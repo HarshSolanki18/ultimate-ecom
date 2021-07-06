@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import {Tv,SportsSoccer,SportsCricket} from '@material-ui/icons';
+import Icon from '@material-ui/core/Icon';
 import {NavLink,withRouter} from 'react-router-dom';
 import InitialRoutes from '../Routes/Routes';
 
@@ -90,7 +91,8 @@ const Navbar = ({location}) => {
             {
               InitialRoutes.map((prop,key)=>(
                 <NavLink to={prop.path} style={{ textDecoration: 'none',color:'rgba(0, 0, 0, 0.94)' }} key={key}>
-                  <MenuItem selected={activeRoute(prop.path)}>
+                  <MenuItem selected={activeRoute(prop.path)} >
+                   <ListItemIcon> <Icon>{prop.icon}</Icon></ListItemIcon>
                     <ListItemText primary={prop.sidebarName} />
                   </MenuItem>
                 </NavLink>

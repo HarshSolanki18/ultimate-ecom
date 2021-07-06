@@ -10,8 +10,8 @@ function App() {
         <Navbar />
         <Switch>
         {
-          InitialRoutes.map(route=>(
-            <Route exact path={route.path} component={route.component}/>
+          InitialRoutes.map((route,key)=>(
+            <Route exact path={route.path} component={route.component} key={key}/>
           ))
         }
         </Switch>
