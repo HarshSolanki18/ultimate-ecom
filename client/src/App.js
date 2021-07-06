@@ -1,12 +1,22 @@
-import './App.css';
-import Navbar from './components/Navbar';
-
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router,Route,Switch } from "react-router-dom";
+import InitialRoutes from "./Routes/Routes";
 
 function App() {
   return (
-    <div className="App">
-     <Navbar/>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+        {
+          InitialRoutes.map(route=>(
+            <Route exact path={route.path} component={route.component}/>
+          ))
+        }
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -14,7 +14,9 @@ import {
 
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import {Tv,SportsSoccer,SportsCricket,Home} from '@material-ui/icons';
+import {Tv,SportsSoccer,SportsCricket} from '@material-ui/icons';
+import {NavLink,withRouter} from 'react-router-dom';
+import InitialRoutes from '../Routes/Routes';
 
 const useStyles = makeStyles((theme) =>
   createStyles({  
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Navbar = () => {
+const Navbar = ({location}) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open) => (event) => {
@@ -49,6 +51,9 @@ const Navbar = () => {
 
     setIsOpen(open);
   };
+  const activeRoute = (routeName) => {
+    return location.pathname === routeName ? true : false;
+  }
   return (
     <div>
       <div className={classes.root}>
@@ -82,10 +87,16 @@ const Navbar = () => {
           onKeyDown={toggleDrawer(false)}
         >
           <MenuList>
-          <MenuItem>
-            <ListItemIcon><Home/></ListItemIcon>
-              <ListItemText primary="Home" />
-            </MenuItem>
+            {
+              InitialRoutes.map((prop,key)=>(
+                <NavLink to={prop.path} style={{ textDecoration: 'none',color:'rgba(0, 0, 0, 0.94)' }} key={key}>
+                  <MenuItem selected={activeRoute(prop.path)}>
+                    <ListItemText primary={prop.sidebarName} />
+                  </MenuItem>
+                </NavLink>
+              ))
+            }
+          
             <Divider/>
             <MenuItem>
             <ListItemText primary="Catergories"/>
@@ -109,4 +120,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
