@@ -1,5 +1,6 @@
 import Home from "../pages/Landing";
 import About from "../pages/About";
+import Cart from "../pages/Cart";
 
 
 const Routes = [
@@ -14,6 +15,12 @@ const Routes = [
     component: About,
     icon:"info"
    },
+   {
+     path:"/cart",
+     sidebarName:"Cart",
+     component:Cart,
+     icon:"shopping_cart"
+   }
 ];
 
 export default Routes;
