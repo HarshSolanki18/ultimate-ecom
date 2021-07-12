@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) =>
     fullList: {
       width: "auto",
     },
+    flatmenu:{display:'flex',flexGrow:1,justifyContent:'flex-end',paddingRight:theme.spacing(1)}
   })
 );
 
@@ -69,10 +70,19 @@ const Navbar = ({location}) => {
             >
               <MenuIcon />
             </IconButton>
+            
             <Typography variant="h6" className={classes.title}>
               Ulti-Ecom
             </Typography>
-            
+            <div className={classes.flatmenu}>
+            <Typography variant="h6" >
+            Login
+          </Typography>
+          <Typography variant="h6" >
+            Cart
+          </Typography>
+          </div>
+          
           </Toolbar>
         </AppBar>
       </div>

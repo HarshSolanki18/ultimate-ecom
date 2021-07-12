@@ -1,6 +1,17 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
 
+const cartSchema=mongoose.Schema({
+  product:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"Product",
+      required:true,
+  },
+  skuid:{type:mongoose.Schema.Types.ObjectId},
+  quantity:{type:Number,required:true}
+
+})
+
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -29,6 +40,7 @@ const userSchema = mongoose.Schema(
         street1:{type:String,required:true},
         street2:{type:String,required:true}
     },
+    cartItems:[cartSchema],
 
   },
   {
