@@ -32,6 +32,11 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    isVerified:{
+      type:Boolean,
+      required:true,
+      default:false
+    },
     billingAddress:{
         country:{type:String,required:true},
         city:{type:String,required:true},

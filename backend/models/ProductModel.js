@@ -6,9 +6,8 @@ const skuSchema=mongoose.Schema({
     salePrice:{type:Number,required:true},
     color:{type:String,required:true},
     assests:{
-        image1:{type:String},
-        image2:{type:String},
-        image3:{type:String},
+        image1:{type:String,required:true},
+        image2:{type:String,reqired:true},
     },
     quantity:{
         type:String,
@@ -59,12 +58,12 @@ const ProductSchema=mongoose.Schema(
             type:String,required:true
         },
         assests:{
-            image1:{type:String},
-            image2:{type:String},
-            image3:{type:String},
+            image1:{type:String,required:true},
+            image2:{type:String,required:true},
+            
         },
-        salePrice:{type:Number},
-        originalPrice:{type:Number},
+        salePrice:{type:Number,required:true},
+        originalPrice:{type:Number,required:true},
         category:{type:String,required:true},
         brand:{type:String,required:true},
         tags:{
@@ -90,6 +89,11 @@ const ProductSchema=mongoose.Schema(
         timestamps:true
     }
 )
+ProductSchema.pre("save",async function(next){
+    this.category=this.category.toLowerCase();
+    next();
+})
+
 const Product=new mongoose.model('Product',ProductSchema);
 
   

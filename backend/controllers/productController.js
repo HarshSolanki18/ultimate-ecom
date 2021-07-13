@@ -5,8 +5,13 @@ import Product from "../models/ProductModel.js";
 // public
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find({});
-  res.json(products);
+  try{
+    const products = await Product.find({});
+    res.json(products);
+  }catch(err){
+    res.status(404).json({err:"Couldnot fetch products "+err.message});
+  }
+    
 };
 
 // @desc    Create a product
