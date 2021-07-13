@@ -75,10 +75,10 @@ const Navbar = ({location}) => {
               Ulti-Ecom
             </Typography>
             <div className={classes.flatmenu}>
-            <Typography variant="h6" >
+            <Typography variant="h6" style={{paddingRight:"10px"}}>
             Login
           </Typography>
-          <Typography variant="h6" >
+          <Typography variant="h6" style={{paddingRight:"10px"}}>
             Cart
           </Typography>
           </div>

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const skuSchema=mongoose.Schema({
     sku:{type:String,required:true},
-    size:{type:Number},
+    size:{type:String,required:true},
     originalPrice:{type:Number,required:true},
     salePrice:{type:Number,required:true},
     color:{type:String,required:true},
@@ -51,7 +51,7 @@ const ProductSchema=mongoose.Schema(
         user:{
             
                 type: mongoose.Schema.Types.ObjectId,
-           //     required: true,
+              //  required: true,
                 ref: "User",
         },
         name:{type:String,required:true},
@@ -67,13 +67,23 @@ const ProductSchema=mongoose.Schema(
         originalPrice:{type:Number},
         category:{type:String,required:true},
         brand:{type:String,required:true},
-        tags:[],
+        tags:{
+            type:[String],
+            validate: v => Array.isArray(v) && v.length > 0,
+    
+            },
         quantity:{type:Number,required:true},
         rating:{type:Number,required:true,default:0},
         numReviews:{type:Number,required:true},
-        skus:[skuSchema],
-        availableCities:[citySchema],
-        reviews:[reviewSchema]
+        skus:{
+            type:[skuSchema],
+            validate: v => Array.isArray(v) && v.length > 0,
+        },
+        availableCities:{
+            type:[citySchema],
+            validate: v => Array.isArray(v) && v.length > 0,
+        },
+        reviews:[reviewSchema]  //will make it required later
 
                       
     },{
@@ -81,5 +91,8 @@ const ProductSchema=mongoose.Schema(
     }
 )
 const Product=new mongoose.model('Product',ProductSchema);
+
+  
+
 
 export default Product;
